@@ -3,4 +3,16 @@
     <string name="loading">Loading..</string>
     <string name="load_img">Load_img</string>
     <string name="no_internet_connection">No Internet Or GPS Connection</string>
+    <string name="template_temp">12 ℃</string>
+    <string name="template_description">moderate rain</string>
+    <string name="current_weather">Weather</string>
+    <string name="more_information">More Information:</string>
+    <string name="template_wind_speed">4 m/s</string>
+    <string name="template_coord">lon: 34, lat: 27</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="your_location">Your Location:</string>
+    <string name="template_pressure">1020</string>
+    <string name="pressure">Pressure</string>
+    <string name="template_humidity">20%</string>
+    <string name="humidity">Humidity</string>
 </resources>

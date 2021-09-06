@@ -2,12 +2,12 @@ package com.example.Controllers;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,8 +29,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -41,7 +39,7 @@ import java.util.Locale;
 public class LoadPage extends AppCompatActivity {
     private ProgressBar load_progress_bar;
     private TextView connection_warn;
-    private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&appid=4398fb47bec1e4f059c85184f9291200";
+
     public Address address;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -86,12 +84,8 @@ public class LoadPage extends AppCompatActivity {
             }
 
 
-            /* Get Weather by User address */
-
-
         }).start();
     }
-    int i;
     @SuppressLint("MissingPermission")
     private synchronized void getLocation() {
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
@@ -104,7 +98,6 @@ public class LoadPage extends AppCompatActivity {
                     if (location == null) {
                         try {
                             Thread.sleep(1000);
-                            Log.d(null,""+i++);
                             getLocation();
                             return;
                         } catch (InterruptedException e) {
@@ -117,8 +110,8 @@ public class LoadPage extends AppCompatActivity {
                             location.getLatitude(), location.getLongitude(), 1
                     );
                     address = addresses.get(0);
-                    load_progress_bar.setProgress(10);
-                    GetJsonByCoordinates(String.format(API_URL, address.getLatitude(), address.getLongitude()));
+                    load_progress_bar.setProgress(1);
+                    GetJsonByCoordinates(StaticMethods.getApiUrlByCoordinates(address.getLatitude(),address.getLongitude()));
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -127,20 +120,17 @@ public class LoadPage extends AppCompatActivity {
         });
     }
     public void GetJsonByCoordinates(String url) {
+
+
         RequestQueue mQ = Volley.newRequestQueue(LoadPage.this);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try {
-                            Log.d(null, url);
-                            JSONArray jsonArray = response.getJSONArray("weather");
-                            JSONObject json = jsonArray.getJSONObject(0);
-                            Log.d(null, json.getString("main"));
-                            load_progress_bar.setProgress(20);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                            load_progress_bar.setProgress(2);
+                            Intent intent = new Intent(LoadPage.this, MainPage.class);
+                            intent.putExtra("JSONObject", response.toString());
+                            startActivity(intent);
                         //JSONArray jsonArray = response.getJSONArray()
                     }
                 },
@@ -158,4 +148,9 @@ public class LoadPage extends AppCompatActivity {
         mQ.add(request);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        // do nothing
+    }
 }
