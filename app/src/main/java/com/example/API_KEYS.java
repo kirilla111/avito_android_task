@@ -1,6 +1,7 @@
 package com.example;
 
 public class API_KEYS {
+    public static final String ALTERNATIVE_API_URL = "https://api.openweathermap.org/data/2.5/onecall?lat=%f&lon=%f&exclude=minutely&appid=4398fb47bec1e4f059c85184f9291200";
     public static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?";
     public static final String API_URL_ATTRS_COORDINATES = "lat=%f&lon=%f";
     public static final String APP_ID = "appid=4398fb47bec1e4f059c85184f9291200";

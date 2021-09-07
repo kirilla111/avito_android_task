@@ -6,17 +6,42 @@
     android:layout_height="match_parent"
     android:background="@color/primaryColor"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="0dp"
     android:paddingTop="50dp"
     android:paddingBottom="0dp">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/go_to_week_forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Button"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/button_style"
+        android:padding="10dp"
+        android:text="Week Forecast"
+        android:textColor="@color/primaryColor"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/go_to_city_button"
+        app:layout_constraintTop_toTopOf="@+id/go_to_city_button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/go_to_city_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_style"
+        android:padding="10dp"
+        android:text="Choose city "
+        android:textColor="@color/primaryColor"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,7 +69,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/temperature"
+            android:id="@+id/city_temperature"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -54,14 +79,14 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/main_img"
+            app:layout_constraintBottom_toBottomOf="@+id/city_main_img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/main_img"
-            app:layout_constraintTop_toTopOf="@+id/main_img"
+            app:layout_constraintStart_toEndOf="@+id/city_main_img"
+            app:layout_constraintTop_toTopOf="@+id/city_main_img"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/weather_description"
+            android:id="@+id/city_weather_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -75,12 +100,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/main_img"
-            app:layout_constraintTop_toBottomOf="@+id/feels_like"
+            app:layout_constraintStart_toEndOf="@+id/city_main_img"
+            app:layout_constraintTop_toBottomOf="@+id/city_feels_like"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
-            android:id="@+id/main_img"
+            android:id="@+id/city_main_img"
             android:layout_width="99dp"
             android:layout_height="96dp"
             android:foregroundGravity="center_vertical|center|center_horizontal"
@@ -93,17 +118,17 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/feels_like"
+            android:id="@+id/city_feels_like"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Feels like: 10 "
+            android:text="@string/feels_like"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/weather_description"
-            app:layout_constraintTop_toBottomOf="@+id/temperature"
+            app:layout_constraintStart_toStartOf="@+id/city_weather_description"
+            app:layout_constraintTop_toBottomOf="@+id/city_temperature"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,6 +136,7 @@
         android:id="@+id/main_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/current_weather"
         android:textColor="@color/secondary_text_color"
         android:textSize="30sp"
@@ -132,10 +158,10 @@
         android:paddingRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="1.0">
 
 
         <LinearLayout
@@ -288,5 +314,24 @@
                 android:text="@string/template_wind_speed"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

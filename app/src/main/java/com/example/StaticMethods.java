@@ -15,14 +15,7 @@ import androidx.core.app.ActivityCompat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.API_KEYS.API_DIVIDER;
-import static com.example.API_KEYS.API_URL;
-import static com.example.API_KEYS.API_URL_ATTRS_COORDINATES;
-import static com.example.API_KEYS.APP_ID;
-import static com.example.API_KEYS.ICON_URL;
-import static com.example.API_KEYS.LATITUDE_KEY;
-import static com.example.API_KEYS.LOCATION_NAME_KEY;
-import static com.example.API_KEYS.LONGITUDE_KEY;
+import static com.example.API_KEYS.*;
 
 public class StaticMethods {
 
@@ -92,27 +85,27 @@ public class StaticMethods {
 
     }
 
-    public static String getHumidityString(JSONObject json, String key) throws JSONException {
-        String humidity = json.getString(key);
+    public static String getHumidityString(JSONObject json) throws JSONException {
+        String humidity = json.getString(HUMIDITY_KEY);
         return humidity + " %";
     }
 
-    public static String getFeelsLike(JSONObject json, String key) throws JSONException {
-        return String.format("Feels like %s", getWeatherInCel(json, "temp"));
+    public static String getFeelsLike(JSONObject json) throws JSONException {
+        return String.format("Feels like %s", getWeatherInCel(json, TEMPERATURE_KEY));
     }
 
-    public static String getPressureString(JSONObject json, String key) throws JSONException {
-        double pressure = json.getDouble(key);
+    public static String getPressureString(JSONObject json) throws JSONException {
+        double pressure = json.getDouble(PRESSURE_KEY);
         pressure = pressure / 1.333;
-        return String.format("%.3f mmHg",  pressure);
+        return String.format("%.3f mmHg", pressure);
     }
 
-    public static String getWindSpeedString(JSONObject json, String key) throws JSONException {
-        return String.format("%.2f m/s",  json.getDouble(key));
+    public static String getWindSpeedString(JSONObject json) throws JSONException {
+        return String.format("%.2f m/s", json.getDouble(WIND_SPEED_KEY));
     }
 
     public static String getLocationString(JSONObject json) throws JSONException {
-        return String.format("lon: %.2f / lat: %.2f",  json.getDouble(LONGITUDE_KEY), json.getDouble(LATITUDE_KEY));
+        return String.format("lon: %.2f / lat: %.2f", json.getDouble(LONGITUDE_KEY), json.getDouble(LATITUDE_KEY));
     }
 
     public static String getLocationNameString(JSONObject json) throws JSONException {

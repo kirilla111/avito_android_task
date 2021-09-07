@@ -15,4 +15,7 @@
     <string name="pressure">Pressure</string>
     <string name="template_humidity">20%</string>
     <string name="humidity">Humidity</string>
+    <string name="feels_like">Feels like: 10</string>
+    <string name="search">Search</string>
+    <string name="wheather_forecast_for">Wheather Forecast for ..</string>
 </resources>

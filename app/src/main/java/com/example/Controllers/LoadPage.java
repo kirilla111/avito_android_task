@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,7 +50,6 @@ public class LoadPage extends AppCompatActivity {
         this.setContentView(R.layout.load_page);
         this.load_progress_bar = findViewById(R.id.load_progress_bar);
         this.connection_warn = findViewById(R.id.connection_warn);
-
     }
 
     @Override
@@ -57,35 +57,57 @@ public class LoadPage extends AppCompatActivity {
         super.onStart();
 
         new Thread(() -> {
-
-            while (!StaticMethods.hasConnection(LoadPage.this) || !StaticMethods.isLocationEnabled(LoadPage.this)) {
-                connection_warn.setVisibility(View.VISIBLE);
+            while (
+                    ActivityCompat.checkSelfPermission(LoadPage.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                ActivityCompat.requestPermissions(LoadPage.this,
+                        new String[]{
+                                Manifest.permission.ACCESS_FINE_LOCATION}, 44);
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            connection_warn.setVisibility(View.INVISIBLE);
+
+            while (!StaticMethods.hasConnection(LoadPage.this) || !StaticMethods.isLocationEnabled(LoadPage.this)) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setVisable(connection_warn);
+                    }
+                });
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+
+                }
+            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setInVisable(connection_warn);
+                }
+            });
+
 
             /* Get User address */
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(LoadPage.this);
-            if (ActivityCompat.checkSelfPermission(LoadPage.this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                getLocation();
-            } else {
-                ActivityCompat.requestPermissions(LoadPage.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-
-                if (ActivityCompat.checkSelfPermission(LoadPage.this,
-                        Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    getLocation();
-                }
-            }
+            getLocation();
 
 
         }).start();
     }
+
+    private void setInVisable(View v) {
+        try {
+            v.setVisibility(View.INVISIBLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @SuppressLint("MissingPermission")
     private synchronized void getLocation() {
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
@@ -111,7 +133,7 @@ public class LoadPage extends AppCompatActivity {
                     );
                     address = addresses.get(0);
                     load_progress_bar.setProgress(1);
-                    GetJsonByCoordinates(StaticMethods.getApiUrlByCoordinates(address.getLatitude(),address.getLongitude()));
+                    GetJsonByCoordinates(StaticMethods.getApiUrlByCoordinates(address.getLatitude(), address.getLongitude()));
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -119,18 +141,17 @@ public class LoadPage extends AppCompatActivity {
             }
         });
     }
+
     public void GetJsonByCoordinates(String url) {
-
-
         RequestQueue mQ = Volley.newRequestQueue(LoadPage.this);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                            load_progress_bar.setProgress(2);
-                            Intent intent = new Intent(LoadPage.this, MainPage.class);
-                            intent.putExtra("JSONObject", response.toString());
-                            startActivity(intent);
+                        load_progress_bar.setProgress(2);
+                        Intent intent = new Intent(LoadPage.this, MainPage.class);
+                        intent.putExtra("JSONObject", response.toString());
+                        startActivity(intent);
                         //JSONArray jsonArray = response.getJSONArray()
                     }
                 },
@@ -148,6 +169,14 @@ public class LoadPage extends AppCompatActivity {
         mQ.add(request);
     }
 
+    private synchronized void setVisable(View v) {
+        try {
+            v.setVisibility(View.VISIBLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Override
     public void onBackPressed() {
