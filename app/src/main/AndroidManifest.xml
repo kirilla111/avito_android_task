@@ -28,6 +28,12 @@
         <activity
             android:name="com.example.Controllers.CityForecastPage"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:name="com.example.Controllers.WeekForecastPage"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

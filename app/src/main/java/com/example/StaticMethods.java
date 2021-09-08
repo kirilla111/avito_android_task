@@ -1,6 +1,7 @@
 package com.example;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
@@ -8,6 +9,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -18,7 +22,7 @@ import org.json.JSONObject;
 import static com.example.API_KEYS.*;
 
 public class StaticMethods {
-
+    public static final double CEL_CONST  = 273.15;
     public static boolean hasConnection(final Context context) {
         if (ActivityCompat.checkSelfPermission(context,
                 Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_DENIED) {
@@ -62,13 +66,20 @@ public class StaticMethods {
             return (mode != Settings.Secure.LOCATION_MODE_OFF);
         }
     }
-
+    /* V 1.0 */
+//    public static String getApiUrlByCoordinates(double lat, double lon) {
+//        String attrs = String.format(API_URL_ATTRS_COORDINATES, lat, lon);
+//        return API_URL + attrs + API_DIVIDER + APP_ID;
+//    }
+    /* V 2.0 */
     public static String getApiUrlByCoordinates(double lat, double lon) {
-        String attrs = String.format(API_URL_ATTRS_COORDINATES, lat, lon);
-        return API_URL + attrs + API_DIVIDER + APP_ID;
+        String attrs = String.format(ALTERNATIVE_API_URL, lat, lon);
+//        Log.d(null, attrs);
+        return attrs;
     }
 
     public static String getIconUrl(String icon_code) {
+//        Log.d(null, String.format(ICON_URL, icon_code));
         return String.format(ICON_URL, icon_code);
     }
 
@@ -80,7 +91,7 @@ public class StaticMethods {
 
     public static String getWeatherInCel(JSONObject json, String key) throws JSONException {
         double temp = json.getDouble(key);
-        temp = temp - 273.15;
+        temp = temp - CEL_CONST;
         return String.format("%o °C", (int) Math.floor(temp));
 
     }
@@ -110,5 +121,20 @@ public class StaticMethods {
 
     public static String getLocationNameString(JSONObject json) throws JSONException {
         return String.format("Weather in %s", json.getString(LOCATION_NAME_KEY));
+    }
+
+    public static String getApiUrlByCity(String query) {
+        String attrs = String.format(API_URL_ATTRS_CITY, query);
+        return API_URL+attrs+API_DIVIDER+APP_ID;
+    }
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

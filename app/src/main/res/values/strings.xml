@@ -5,7 +5,7 @@
     <string name="no_internet_connection">No Internet Or GPS Connection</string>
     <string name="template_temp">12 ℃</string>
     <string name="template_description">moderate rain</string>
-    <string name="current_weather">Weather</string>
+    <string name="current_weather">Weather by Location</string>
     <string name="more_information">More Information:</string>
     <string name="template_wind_speed">4 m/s</string>
     <string name="template_coord">lon: 34, lat: 27</string>
@@ -18,4 +18,14 @@
     <string name="feels_like">Feels like: 10</string>
     <string name="search">Search</string>
     <string name="wheather_forecast_for">Wheather Forecast for ..</string>
+    <string name="time_template">08:00</string>
+    <string name="week_forecast">Week Forecast</string>
+    <string name="temperature">Temperature:</string>
+    <string name="day_temp">day: 12 *C</string>
+    <string name="eve_temp">eve: 12 *C</string>
+    <string name="night_temp">night: 12 *C</string>
+    <string name="max_temp">max: 12 *C</string>
+    <string name="min_temp">min: 12 *C</string>
+    <string name="morn_temp">morn: 12 *C</string>
+    <string name="type_your_city">Type your City</string>
 </resources>

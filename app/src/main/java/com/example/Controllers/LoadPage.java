@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ import java.util.Locale;
 public class LoadPage extends AppCompatActivity {
     private ProgressBar load_progress_bar;
     private TextView connection_warn;
+
 
     public Address address;
     FusedLocationProviderClient fusedLocationProviderClient;

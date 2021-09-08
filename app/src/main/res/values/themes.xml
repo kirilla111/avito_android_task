@@ -4,4 +4,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/primaryBarColor</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
+    <style name="progressBar_style" parent="@style/Theme.AppCompat">
+        <item name="colorAccent">@color/secondary_color</item>
+    </style>
 </resources>
