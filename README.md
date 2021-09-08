@@ -7,9 +7,9 @@
 
 #### Скриншоты из приложения
 
-<p align="center"><img style="width:50%; border: 1px solid black" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-41-906_com.example.myweather.jpg"></p><br>
-<p align="center"><img style="width:50%; border: 1px solid black" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-48-572_com.example.myweather.jpg"></p><br>
-<p align="center"><img style="width:50%; border: 1px solid black" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-50-188_com.example.myweather.jpg"></p><br>
-<p align="center"><img style="width:50%; border: 1px solid black" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-54-741_com.example.myweather.jpg"></p><br>
-<p align="center"><img style="width:50%; border: 1px solid black" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-18-20-809_com.example.myweather.jpg"></p><br>
-<p align="center"><img style="width:50%; border: 1px solid black" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-18-26-520_com.example.myweather.jpg"></p><br>
+<p align="center"><img style="width:50%; border: 1px solid black; margin-bottom: 20px;" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-41-906_com.example.myweather.jpg"></p><br>
+<p align="center"><img style="width:50%; border: 1px solid black;  margin-bottom: 20px;" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-48-572_com.example.myweather.jpg"></p><br>
+<p align="center"><img style="width:50%; border: 1px solid black;  margin-bottom: 20px;" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-50-188_com.example.myweather.jpg"></p><br>
+<p align="center"><img style="width:50%; border: 1px solid black;  margin-bottom: 20px;" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-13-54-741_com.example.myweather.jpg"></p><br>
+<p align="center"><img style="width:50%; border: 1px solid black;  margin-bottom: 20px;" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-18-20-809_com.example.myweather.jpg"></p><br>
+<p align="center"><img style="width:50%; border: 1px solid black;  margin-bottom: 20px;" src="https://github.com/kirilla111/avito_android_task/blob/master/app_srcreanshots/Screenshot_2021-09-08-15-18-26-520_com.example.myweather.jpg"></p><br>
