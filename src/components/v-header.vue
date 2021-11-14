@@ -1,14 +1,21 @@
 <template>
     <div class="v-header">
-        <div class="logo">
-            <img src="../assets/logo-hor.png" alt="">
+        <div class="header__inner">
+            <div class="logo">
+                <img src="../assets/logo-hor2.png" alt="">
+            </div>
+            <div class="search">
+                <input class="search__input" type="text" placeholder="Поиск" v-model="search" />
+            </div>
+            <div class="contacts">
+                <div class="container">
+                    <a href="https://github.com/kirilla111/my_weather">Исходный код</a>
+                </div>
+
+
+            </div>
         </div>
-        <div class="search">
-            <input class="search__input" type="text" placeholder="Поиск" v-model="search" />
-        </div>
-        <div class="contacts">
-            <a href="https://github.com/kirilla111/my_weather">https://github.com/kirilla111/my_weather</a>
-        </div>
+
 
     </div>
 </template>
@@ -31,25 +38,30 @@
         background-color: rgb(0, 157, 236);
         min-height: 4.5em;
 
-        display: grid;
-        grid-template-columns: 1.5fr 3fr 1.5fr;
-        grid-template-rows: 1fr;
-        gap: 0px 0px;
-        grid-template-areas:
-            "logo search contacts";
+        display: flex;
+        align-items: center;
         text-align: center;
-        align-content: center;
-        
 
         border-bottom: 2px solid #2D3DB3;
         -webkit-box-shadow: 0px 17px 13px 8px rgba(79, 176, 224, 0.73);
         box-shadow: 0px 17px 13px 8px rgba(79, 176, 224, 0.73);
     }
-    input{
+
+    .header__inner {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        margin: auto;
+        padding: 0;
+    }
+
+    input {
         outline: none;
     }
+
     .search__input {
-        width: 50%;
+        width: 70%;
         height: 2em;
         white-space: nowrap;
         padding-left: 20px;
@@ -60,21 +72,60 @@
         border-radius: 26.5px;
         font-size: 16px;
     }
-    .search{
+
+    .search {
         padding-top: 2em;
         padding-bottom: 2em;
     }
-    .logo{
-       
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
     }
-    .contacts{
-        vertical-align: middle;
+
+    .contacts {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
     }
-    .contacts a{
+
+    .contacts a {
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        font-size: 1em;
+        text-align: center;
+        align-items: center;
+    }
+
+    .contacts a:hover {
+        color: rgb(194, 194, 194);
+        cursor: pointer;
+
+    }
+
+    .contacts a {
         color: rgb(1, 33, 49);
-        
+
     }
-   img{
-       height: 6em;
-   }
+
+    .contacts .container {
+        display: flex;
+        text-align: center;
+        align-items: center;
+    }
+
+    img {
+        height: 6em;
+    }
+
+    @media screen and (max-width: 700px) {
+        .header__inner {
+            flex-direction: column;
+            justify-content: center;
+            margin: auto;
+            padding: 0;
+        }
+    }
 </style>

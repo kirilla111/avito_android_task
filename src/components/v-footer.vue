@@ -18,9 +18,8 @@
     .v-footer {
         display: flex;
         flex-direction: column;
-        margin-top: 100px;
-        position: -webkit-fixed;
-        position: fixed;
+       /* position: -webkit-fixed;
+        position: fixed;*/
         text-align: center;
         left: 0;
         bottom: 0;

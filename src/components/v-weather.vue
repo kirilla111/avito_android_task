@@ -1,28 +1,46 @@
 <template>
     <div class="v-weather">
-        <div class="container__row__main">
-            <div>
-                <div class="container__row">
+        <div class="weather">
+
+            <div class="weather__main">
+
+                <div class="weather__container">
                     <div class="city_name">{{city_name}}</div>
-
                 </div>
-                <div class="container__row">
-                    <img class="v-weather__image" :src="weather_image" alt="" />
-                    <p class="weather__degrees">{{ degrees.toFixed(0) }} °С</p>
-
-
+                <div class="weather__container">
+                    <div>
+                        <img class="v-weather__image" :src="weather_image" alt="" />
+                    </div>
+                    <div class="weather__degrees">
+                        {{ degrees.toFixed(0) }} °С
+                    </div>
                 </div>
-                <div class="container__row">
-                    <p>Feels like {{ degrees_like.toFixed(0) }} °С |</p>
-                    <p>| {{ weather_description }}</p>
+                <div class="weather__container">
+                    <p>Feels like {{ degrees_like.toFixed(0) }} °С | {{ weather_description }}</p>
                 </div>
+
             </div>
-            <div class="container">
-                <p class="font20">More information</p>
-                <p class="more__information">Pressure {{pressure}}</p>
-                <p class="more__information">Humidity {{humidity}}</p>
-                <p class="more__information">Wind speed {{speed}}</p>
-                <p class="more__information">Probability of precipitation {{all}}</p>
+
+            <div class="weather__additional">
+
+                <p class="weather__additional__name">More information</p>
+
+                <div class="weather__additional__description">
+                    <img src="../assets/icons8-барометр-30.png" alt="">
+                    <p>Pressure {{pressure}}</p>
+                </div>
+                <div class="weather__additional__description">
+                    <img src="../assets/icons8-влажный-30.png" alt="">
+                    <p>Humidity {{humidity}}</p>
+                </div>
+                <div class="weather__additional__description">
+                    <img src="../assets/icons8-скорость-ветра-13-17-лет-30.png" alt="">
+                    <p>Wind speed {{speed}}</p>
+                </div>
+                <div class="weather__additional__description">
+                    <img src="../assets/icons8-зонтик-30.png" alt="">
+                    <p>Probability of precipitation {{all}}</p>
+                </div>
 
             </div>
         </div>
@@ -81,13 +99,15 @@
         text-align: left;
     }
 
-    .container__row {
+    .weather__container {
         display: flex;
         flex-direction: row;
         height: auto;
+        align-items: center;
         justify-content: space-around;
     }
-     .container__row__main {
+
+    .weather {
         display: flex;
         flex-direction: row;
         height: auto;
@@ -96,6 +116,7 @@
 
     .weather__degrees {
         font-size: 4em;
+
     }
 
     .city_name {
@@ -104,28 +125,48 @@
         text-align: left;
         font-family: 'Yuji Syuku', serif;
         font-size: 2em;
+        font-weight: bold;
+    }
+    .weather__main{
+
+    }
+    .weather__additional{
+        display: flex;
+        flex-direction: column;
+    }
+    .weather__additional__description{
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+    }
+    .weather__additional__description img{
+        width: 30px;
+        height: 30px;
+        padding-right: 10px;
     }
 
-    .font20 {
+    .weather__additional__name {
         padding-top: 15px;
         grid-area: city_name;
         padding-bottom: 20px;
         font-family: 'Yuji Syuku', serif;
-        font-size: 1em;
+        font-size: 1.2em;
+        font-weight: bold;
     }
 
-    .more__information {
+    .weather__additional__description p {
         padding: 5px 0px 5px;
     }
 
     @media screen and (max-width: 500px) {
-        .v-weather {
-            
-        }
-        .container__row__main{
+        .v-weather {}
+
+        .weather {
             flex-direction: column;
         }
-        .container{
+
+        .container {
             text-align: center;
         }
     }
