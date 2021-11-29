@@ -50,13 +50,9 @@
 </template>
 
 <script>
-    import Weather from "./v-weather.vue";
 
     export default {
         name: "v-weather",
-        components: {
-            Weather,
-        },
         data() {
             return {};
         },
@@ -66,10 +62,10 @@
             degrees_like: Number,
             weather_image: String,
             weather_description: String,
-            pressure: String,
-            humidity: String,
-            speed: String,
-            all: String
+            pressure: Number,
+            humidity: Number,
+            speed: Number,
+            all: Number
         },
         methods: {
 

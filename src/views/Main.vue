@@ -17,29 +17,22 @@
 
   <div class="weather_description">
     <div class="weather_description__container">
- <v-weather-detail
-        v-for="(day, index) in weather"
-        :key="index"
-        :data="day.data"
-        :degrees="day.degrees"
-        :image="day.image"
-        :degrees_like ="day.degrees_like"
-        :weather_description ="day.weather_description"
-        :pressure ="day.pressure"
-        :humidity ="day.humidity"
-        :speed ="day.speed"
-        :all ="day.all"
+    <v-weather-detail
+        v-for="(day, index) in weather" :key="index"
+        
+        :dt="day.dt"
+        :degrees="day.main.temp-273.15"
+        :degrees_like ="day.main.feels_like-273.15"
+        :weather_image ="day.weather.icon"
+        :pressure ="day.main.pressure"
+        :humidity ="day.main.humidity"
+        :speed ="day.wind.speed"
+        :all ="day.clouds.all"
+       
     >
-
     </v-weather-detail>
     </div>
-   
-
-
-    
   </div>
-
-    
   </div>
 </template>
 
@@ -47,6 +40,7 @@
 import vWeather from '../components/v-weather.vue'
 import vWeatherDetail from '../components/v-weather-detail.vue'
 import axios from "axios";
+
 
 export default {
   name: 'Main',
@@ -61,67 +55,11 @@ export default {
       degrees_like: 1,
       weather_image: '',
       weather_description: '',
-      pressure: '',
-      humididty: '',
-      speed: '',
-      all: '',
-      weather: [
-        {
-          data: '15.11',
-          image: '',
-          degrees: 0,
-          degrees_like: 1,
-          weather_description: '42',
-          pressure: '324',
-          humidity: '423',
-          speed: '423',
-          all: '23',
-        },
-        {
-          data: '15.11',
-          image: '',
-          degrees: 0,
-          degrees_like: 1,
-          weather_description: '42',
-          pressure: '324',
-          humidity: '423',
-          speed: '423',
-          all: '23',
-        },
-        {
-          data: '15.11',
-          image: '',
-          degrees: 0,
-          degrees_like: 1,
-          weather_description: '42',
-          pressure: '324',
-          humidity: '423',
-          speed: '423',
-          all: '23',
-        },
-        {
-          data: '15.11',
-          image: '',
-          degrees: 0,
-          degrees_like: 1,
-          weather_description: '42',
-          pressure: '324',
-          humidity: '423',
-          speed: '423',
-          all: '23',
-        },
-        {
-          data: '15.11',
-          image: '',
-          degrees: 0,
-          degrees_like: 1,
-          weather_description: '42',
-          pressure: '324',
-          humidity: '423',
-          speed: '423',
-          all: '23',
-        }
-      ]
+      pressure: 900,
+      humidity: 70,
+      speed: 5.85,
+      all: 100,
+      weather: Array,
     }
   },
   props:{
@@ -132,8 +70,8 @@ export default {
     var vm = this;
     axios.get("https://api.openweathermap.org/data/2.5/weather?q=Moscow&APPID=1c395069d4f1ce617f9bb295f114c6cc").then((res) => {
       vm.city_name = res.data.name;
-      vm.degrees = res.data.main.temp-273,15;
-      vm.degrees_like = res.data.main.feels_like-273,15;
+      vm.degrees = res.data.main.temp-273.15;
+      vm.degrees_like = res.data.main.feels_like-273.15;
       vm.weather_image = "https://openweathermap.org/img/wn/"+res.data.weather[0]['icon']+"@2x.png";
       vm.weather_description = res.data.weather[0]['description'];
       vm.pressure = res.data.main.pressure;
@@ -142,16 +80,8 @@ export default {
       vm.all = res.data.clouds.all;
     });
 
-    axios.get("https://api.openweathermap.org/data/2.5/forecast?q=Moscow&APPID=1c395069d4f1ce617f9bb295f114c6cc").then((res) => {
-      vm.city_name = res.data.name;
-      vm.degrees = res.data.main.temp-273,15;
-      vm.degrees_like = res.data.main.feels_like-273,15;
-      vm.weather_image = "https://openweathermap.org/img/wn/"+res.data.weather[0]['icon']+"@2x.png";
-      vm.weather_description = res.data.weather[0]['description'];
-      vm.pressure = res.data.main.pressure;
-      vm.humidity = res.data.main.humidity;
-      vm.speed = res.data.wind.speed;
-      vm.all = res.data.clouds.all;
+    axios.get("https://api.openweathermap.org/data/2.5/forecast?q=Moscow&APPID=1c395069d4f1ce617f9bb295f114c6cc").then((response) => {
+       vm.weather = response.data.list;
     });
   }
 };
