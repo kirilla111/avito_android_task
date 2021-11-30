@@ -73,7 +73,6 @@
                 return d+"."+m+" "+h+":00";
             },
             getPath(img){
-                console.log(img);
                 return "https://openweathermap.org/img/wn/"+img+"@2x.png";;
             }
         }

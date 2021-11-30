@@ -9,7 +9,7 @@
             </div>
             <div class="contacts">
                 <div class="container">
-                    <a href="https://github.com/kirilla111/my_weather">Исходный код</a>
+                    <a href="https://github.com/kirilla111/my_weather">Разработчики</a>
                 </div>
 
 
@@ -74,6 +74,7 @@
     }
 
     .search {
+        width: 100%;
         padding-top: 2em;
         padding-bottom: 2em;
     }
