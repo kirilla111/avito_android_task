@@ -5,7 +5,7 @@
                 <img src="../assets/logo-hor2.png" alt="">
             </div>
             <div class="search">
-                <input class="search__input" type="text" placeholder="Поиск" v-model="search" />
+                <input class="search__input" type="text" placeholder="🔎 Search.." v-model="search" />
             </div>
             <div class="contacts">
                 <div class="container">
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+ import {eventBus} from "../main.js";
     export default {
         name: "v-header",
         data() {
@@ -29,6 +30,14 @@
                 search: '',
             };
         },
+        watch: {
+            search: function () {
+                var keyword = this.search.toLowerCase();
+                this.$store.commit("changeRequest", keyword);
+                eventBus.$emit('GetRequest');
+                console.log(this.$store.getters.request);
+            }
+        }
     };
 </script>
 
@@ -71,31 +80,45 @@
         border: 2px solid #2D3DB3;
         border-radius: 26.5px;
         font-size: 16px;
+        margin-right: 1em;
     }
 
     .search {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        padding: 0;
         padding-top: 2em;
         padding-bottom: 2em;
+        align-items: center;
+        justify-content: center;
     }
 
     .logo {
+        margin: auto;
+        padding: 0;
         display: flex;
         justify-content: center;
         padding-left: 20px;
         padding-right: 20px;
     }
 
+    .logo img {
+        height: 6em;
+    }
+
     .contacts {
         display: flex;
         justify-content: center;
         padding: 20px;
+        font-family: 'Source Sans Pro', sans-serif;
     }
 
     .contacts a {
         text-decoration: none;
         color: rgb(0, 0, 0);
-        font-size: 1em;
+        font-size: 1.2em;
         text-align: center;
         align-items: center;
     }
@@ -117,9 +140,7 @@
         align-items: center;
     }
 
-    img {
-        height: 6em;
-    }
+
 
     @media screen and (max-width: 700px) {
         .header__inner {

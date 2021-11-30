@@ -18,8 +18,6 @@
     .v-footer {
         display: flex;
         flex-direction: column;
-       /* position: -webkit-fixed;
-        position: fixed;*/
         text-align: center;
         left: 0;
         bottom: 0;
@@ -32,8 +30,9 @@
     }
 
     .footer__logo {
-        font-size: 2em;
+        font-size: 2.5em;
         color: black;
+        font-family: 'Source Sans Pro', sans-serif;
     }
 
     .footer__link {
