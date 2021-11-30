@@ -23,7 +23,7 @@
         :dt="day.dt"
         :degrees="day.main.temp-273.15"
         :degrees_like ="day.main.feels_like-273.15"
-        :weather_image ="day.weather.icon"
+        :weather_image ="day.weather[0].icon"
         :pressure ="day.main.pressure"
         :humidity ="day.main.humidity"
         :speed ="day.wind.speed"
